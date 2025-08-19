@@ -5,18 +5,25 @@ namespace Tennis
         private int _mScore1 = 0;
         private int _mScore2 = 0;
 
+        private bool IsTie => _mScore1 == _mScore2;
+
         public void WonPoint(string playerName)
         {
-            if (playerName == "player1")
+            if (IsPlayer1(playerName))
                 _mScore1 += 1;
             else
                 _mScore2 += 1;
         }
 
+        private static bool IsPlayer1(string playerName)
+        {
+            return playerName == "player1";
+        }
+
         public string GetScore()
         {
             var score = "";
-            if (_mScore1 == _mScore2)
+            if (IsTie)
             {
                 score = _mScore1 switch
                 {
@@ -26,7 +33,7 @@ namespace Tennis
                     _ => "Deuce"
                 };
             }
-            else if (_mScore1 >= 4 || _mScore2 >= 4)
+            else if (AnyPlayerInAdvantageOrWin)
             {
                 var minusResult = _mScore1 - _mScore2;
                 score = minusResult switch
@@ -57,6 +64,8 @@ namespace Tennis
             }
             return score;
         }
+
+        private bool AnyPlayerInAdvantageOrWin => _mScore1 >= 4 || _mScore2 >= 4;
     }
 }
 
