@@ -16,22 +16,7 @@ namespace Tennis
         public string GetScore()
         {
             var score = "";
-            if (IsTie)
-            {
-                if (p1point < 3)
-                {
-                    if (p1point == 0)
-                        score = "Love";
-                    if (p1point == 1)
-                        score = "Fifteen";
-                    if (p1point == 2)
-                        score = "Thirty";
-                    score += "-All";
-                }
-
-                if (p1point > 2)
-                    score = "Deuce";
-            }
+            score = sakjfhhas();
 
             if (p1point > 0 && p2point == 0)
             {
@@ -101,6 +86,29 @@ namespace Tennis
             {
                 score = "Win for player2";
             }
+            return score;
+        }
+
+        private string sakjfhhas()
+        {
+            var score = "";
+            if (IsTie)
+            {
+                if (p1point < 3)
+                {
+                    if (p1point == 0)
+                        score = "Love";
+                    if (p1point == 1)
+                        score = "Fifteen";
+                    if (p1point == 2)
+                        score = "Thirty";
+                    score += "-All";
+                }
+
+                if (p1point > 2)
+                    score = "Deuce";
+            }
+
             return score;
         }
 
