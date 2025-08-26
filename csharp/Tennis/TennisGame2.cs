@@ -91,23 +91,18 @@ namespace Tennis
 
         private string sakjfhhas()
         {
-            var score = "";
-            if (IsTie)
+            if (!IsTie) return "";
+            if (p1point > 2) return "Deuce";
+            if (p1point >= 3) return "";
+            
+            var score = p1point switch
             {
-                if (p1point < 3)
-                {
-                    if (p1point == 0)
-                        score = "Love";
-                    if (p1point == 1)
-                        score = "Fifteen";
-                    if (p1point == 2)
-                        score = "Thirty";
-                    score += "-All";
-                }
-
-                if (p1point > 2)
-                    score = "Deuce";
-            }
+                0 => "Love",
+                1 => "Fifteen",
+                2 => "Thirty",
+                _ => ""
+            };
+            score += "-All";
 
             return score;
         }
