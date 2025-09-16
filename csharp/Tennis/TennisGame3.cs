@@ -9,6 +9,8 @@ namespace Tennis
         private readonly string _p1Name;
         private readonly string _p2Name;
 
+        private static readonly string[] ScoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
+
         public TennisGame3(string player1Name, string player2Name)
         {
             _p1Name = player1Name;
@@ -17,11 +19,11 @@ namespace Tennis
 
         public string GetScore()
         {
+            
             if (_p1Points < 4 && _p2Points < 4 && _p1Points + _p2Points < 6)
             {
-                string[] scoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
-                var player2ScoreName = scoreNames[_p1Points];
-                var player1ScoreName = scoreNames[_p2Points];
+                var player2ScoreName = ScoreNames[_p1Points];
+                var player1ScoreName = ScoreNames[_p2Points];
                 return IsTie ? player2ScoreName + "-All" : player2ScoreName + "-" + player1ScoreName;
             }
 
