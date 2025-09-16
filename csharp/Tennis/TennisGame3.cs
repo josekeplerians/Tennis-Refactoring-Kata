@@ -17,12 +17,12 @@ namespace Tennis
 
         public string GetScore()
         {
-            string s;
             if (_p2Points < 4 && _p1Points < 4 && _p2Points + _p1Points < 6)
             {
-                string[] p = { "Love", "Fifteen", "Thirty", "Forty" };
-                s = p[_p2Points];
-                return IsTie ? s + "-All" : s + "-" + p[_p1Points];
+                string[] scoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
+                var player2ScoreName = scoreNames[_p2Points];
+                var player1ScoreName = scoreNames[_p1Points];
+                return IsTie ? player2ScoreName + "-All" : player2ScoreName + "-" + player1ScoreName;
             }
 
             if (IsTie)
@@ -36,9 +36,9 @@ namespace Tennis
             return _p2Points > _p1Points ? _p1Name : _p2Name;
         }
 
-        private string gdfghdfggh(string s)
+        private string gdfghdfggh(string player)
         {
-            return (PointsDifference()  == 1) ? "Advantage " + s : "Win for " + s;
+            return (PointsDifference()  == 1) ? "Advantage " + player : "Win for " + player;
         }
 
         private int PointsDifference() => Math.Abs(_p2Points - _p1Points);
