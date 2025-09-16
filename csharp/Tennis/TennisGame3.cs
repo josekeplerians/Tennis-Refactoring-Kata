@@ -4,13 +4,13 @@ namespace Tennis
 {
     public class TennisGame3 : ITennisGame
     {
-        private int _p1Points => _player1.Points;
-        private int _p2Points => _player2.Points;
-        private string _p1Name => _player1.Name;
-        private string _p2Name => _player2.Name;
+        private int P1Points => _player1.Points;
+        private int P2Points => _player2.Points;
+        private string P1Name => _player1.Name;
+        private string P2Name => _player2.Name;
         
-        private Player _player1;
-        private Player _player2;
+        private readonly Player _player1;
+        private readonly Player _player2;
 
         private static readonly string[] ScoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
 
@@ -23,10 +23,10 @@ namespace Tennis
         public string GetScore()
         {
             
-            if (_p1Points < 4 && _p2Points < 4 && _p1Points + _p2Points < 6)
+            if (P1Points < 4 && P2Points < 4 && P1Points + P2Points < 6)
             {
-                var player2ScoreName = ScoreNames[_p1Points];
-                var player1ScoreName = ScoreNames[_p2Points];
+                var player2ScoreName = ScoreNames[P1Points];
+                var player1ScoreName = ScoreNames[P2Points];
                 return IsTie ? player2ScoreName + "-All" : player2ScoreName + "-" + player1ScoreName;
             }
 
@@ -38,7 +38,7 @@ namespace Tennis
 
         private string WhoHasMorePoints()
         {
-            return _p1Points > _p2Points ? _p1Name : _p2Name;
+            return P1Points > P2Points ? P1Name : P2Name;
         }
 
         private string GetAdvantageOrWinScore(string player)
@@ -46,9 +46,9 @@ namespace Tennis
             return (PointsDifference()  == 1) ? "Advantage " + player : "Win for " + player;
         }
 
-        private int PointsDifference() => Math.Abs(_p1Points - _p2Points);
+        private int PointsDifference() => Math.Abs(P1Points - P2Points);
 
-        private bool IsTie => _p1Points == _p2Points;
+        private bool IsTie => P1Points == P2Points;
 
         public void WonPoint(string playerName)
         {
