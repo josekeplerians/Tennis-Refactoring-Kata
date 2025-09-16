@@ -4,17 +4,20 @@ namespace Tennis
 {
     public class TennisGame3 : ITennisGame
     {
-        private int _p1Points;
-        private int _p2Points;
-        private readonly string _p1Name;
-        private readonly string _p2Name;
+        private int _p1Points => _player1.Points;
+        private int _p2Points => _player2.Points;
+        private string _p1Name => _player1.Name;
+        private string _p2Name => _player2.Name;
+        
+        private Player _player1;
+        private Player _player2;
 
         private static readonly string[] ScoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
 
         public TennisGame3(string player1Name, string player2Name)
         {
-            _p1Name = player1Name;
-            _p2Name = player2Name;
+            _player1 = new Player(player1Name);
+            _player2 = new Player(player2Name);
         }
 
         public string GetScore()
@@ -49,11 +52,27 @@ namespace Tennis
 
         public void WonPoint(string playerName)
         {
-            if (playerName == "player1")
-                _p1Points += 1;
+            if (playerName == _player1.Name)
+                _player1.ScorePoint();
             else
-                _p2Points += 1;
+                _player2.ScorePoint();
         }
 
+    }
+    
+    public class Player
+    {
+        public string Name { get; private set; }
+        public int Points { get; private set; }
+
+        public Player(string name)
+        {
+            Name = name;
+            Points = 0;
+        }
+        public void ScorePoint()
+        {
+            Points++;
+        }
     }
 }
