@@ -2,41 +2,39 @@ namespace Tennis
 {
     public class TennisGame3 : ITennisGame
     {
-        private int p2;
-        private int p1;
-        private string p1N;
-        private string p2N;
+        private int _p2;
+        private int _p1;
+        private readonly string _p1Name;
+        private readonly string _p2Name;
 
         public TennisGame3(string player1Name, string player2Name)
         {
-            this.p1N = player1Name;
-            this.p2N = player2Name;
+            _p1Name = player1Name;
+            _p2Name = player2Name;
         }
 
         public string GetScore()
         {
             string s;
-            if ((p1 < 4 && p2 < 4) && (p1 + p2 < 6))
+            if (_p1 < 4 && _p2 < 4 && _p1 + _p2 < 6)
             {
                 string[] p = { "Love", "Fifteen", "Thirty", "Forty" };
-                s = p[p1];
-                return (p1 == p2) ? s + "-All" : s + "-" + p[p2];
+                s = p[_p1];
+                return (_p1 == _p2) ? s + "-All" : s + "-" + p[_p2];
             }
-            else
-            {
-                if (p1 == p2)
-                    return "Deuce";
-                s = p1 > p2 ? p1N : p2N;
-                return ((p1 - p2) * (p1 - p2) == 1) ? "Advantage " + s : "Win for " + s;
-            }
+
+            if (_p1 == _p2)
+                return "Deuce";
+            s = _p1 > _p2 ? _p1Name : _p2Name;
+            return ((_p1 - _p2) * (_p1 - _p2) == 1) ? "Advantage " + s : "Win for " + s;
         }
 
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                this.p1 += 1;
+                _p1 += 1;
             else
-                this.p2 += 1;
+                _p2 += 1;
         }
 
     }
