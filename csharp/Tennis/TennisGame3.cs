@@ -20,14 +20,26 @@ namespace Tennis
             {
                 string[] p = { "Love", "Fifteen", "Thirty", "Forty" };
                 s = p[_p2Points];
-                return (_p2Points == _p1Points) ? s + "-All" : s + "-" + p[_p1Points];
+                return IsTie ? s + "-All" : s + "-" + p[_p1Points];
             }
 
-            if (_p2Points == _p1Points)
+            if (IsTie)
                 return "Deuce";
-            s = _p2Points > _p1Points ? _p1Name : _p2Name;
+            var winner = ChooseWinnerIfNotTied();
+            return gdfghdfggh(winner);
+        }
+
+        private string ChooseWinnerIfNotTied()
+        {
+            return _p2Points > _p1Points ? _p1Name : _p2Name;
+        }
+
+        private string gdfghdfggh(string s)
+        {
             return ((_p2Points - _p1Points) * (_p2Points - _p1Points) == 1) ? "Advantage " + s : "Win for " + s;
         }
+
+        private bool IsTie => _p2Points == _p1Points;
 
         public void WonPoint(string playerName)
         {
