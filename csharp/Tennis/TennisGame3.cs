@@ -25,11 +25,11 @@ namespace Tennis
 
             if (IsTie)
                 return "Deuce";
-            var winner = ChooseWinnerIfNotTied();
-            return gdfghdfggh(winner);
+            var playerWithMorePoints = WhoHasMorePoints();
+            return gdfghdfggh(playerWithMorePoints);
         }
 
-        private string ChooseWinnerIfNotTied()
+        private string WhoHasMorePoints()
         {
             return _p2Points > _p1Points ? _p1Name : _p2Name;
         }
