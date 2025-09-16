@@ -23,7 +23,7 @@ namespace Tennis
         public string GetScore()
         {
             
-            if (P1Points < 4 && P2Points < 4 && P1Points + P2Points < 6)
+            if (ThereIsNoWinnerYetijaeoifjea())
             {
                 var player2ScoreName = ScoreNames[P1Points];
                 var player1ScoreName = ScoreNames[P2Points];
@@ -34,6 +34,11 @@ namespace Tennis
                 return "Deuce";
             var playerWithMorePoints = WhoHasMorePoints();
             return GetAdvantageOrWinScore(playerWithMorePoints);
+        }
+
+        private bool ThereIsNoWinnerYetijaeoifjea()
+        {
+            return P1Points < 4 && P2Points < 4 && P1Points + P2Points < 6;
         }
 
         private string WhoHasMorePoints()
