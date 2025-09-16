@@ -1,3 +1,5 @@
+using System;
+
 namespace Tennis
 {
     public class TennisGame3 : ITennisGame
@@ -36,8 +38,10 @@ namespace Tennis
 
         private string gdfghdfggh(string s)
         {
-            return ((_p2Points - _p1Points) * (_p2Points - _p1Points) == 1) ? "Advantage " + s : "Win for " + s;
+            return (PointsDifference()  == 1) ? "Advantage " + s : "Win for " + s;
         }
+
+        private int PointsDifference() => Math.Abs(_p2Points - _p1Points);
 
         private bool IsTie => _p2Points == _p1Points;
 
